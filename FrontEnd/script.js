@@ -29,3 +29,26 @@ async function showWorks(){
     });
 }
 showWorks();
+
+ //Recuperer les categories 
+
+async function getCategories(){
+    let response = await fetch("http://localhost:5678/api/categories");
+    return await response.json();
+}
+/* Afficher les categories*/
+const filters = document.getElementsByClassName("filters")[0];
+
+async function showCategories(){
+    const categories = await getCategories();
+    //console.log(categories);
+    categories.forEach((categorie) => {
+        const btn = document.createElement("button");
+        btn.textContent = categorie.name;
+       btn.id = categorie.id;
+       filters.appendChild(btn);
+});
+}
+
+showCategories();
+
