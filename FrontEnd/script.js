@@ -20,6 +20,7 @@ async function showWorks(){
     galleryWorks.forEach((work) => {
         const figure = document.createElement("figure");
         const image = document.createElement("img");
+        figure.dataset.category = work.category.id;
         image.src = work.imageUrl;
         const figcaption = document.createElement("figcaption");
         figcaption.textContent= work.title;
