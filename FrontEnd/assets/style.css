@@ -127,18 +127,28 @@ li:hover {
 }
 .filters{
 	display: flex;
+	justify-content: center;
 
+	gap: 10px;
+	text-wrap: nowrap;
+	margin: 50px 0 50px 0;
+    width:100%;
+	height: 37px;
 	
 }
 
-#all{
-	background-color: white;
+.filterbutton{
+
+background-color: white;
 	font-family: 'Syne';
 	color: #1D6154 ;
-	width: 100px;
-	height: 37px;
 	border-radius: 60px;
-	border: solid #1D6154 1px
+	border: solid #1D6154 1px;
+	font-size: 16px;
+	padding: 10px 15px;
+
+
+
 	
 }
 

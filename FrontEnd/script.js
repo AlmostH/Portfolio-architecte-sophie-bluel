@@ -46,6 +46,9 @@ async function showCategories(){
         const btn = document.createElement("button");
         btn.textContent = categorie.name;
        btn.id = categorie.id;
+       btn.className = "filterbutton";
+
+    
        filters.appendChild(btn);
 });
 }
