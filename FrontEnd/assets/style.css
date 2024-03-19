@@ -146,10 +146,10 @@ background-color: white;
 	border: solid #1D6154 1px;
 	font-size: 16px;
 	padding: 10px 15px;
-
-
-
-	
+}
+.filterbutton:focus{
+	background-color: #1D6154;
+	color: white;
 }
 
 .gallery {

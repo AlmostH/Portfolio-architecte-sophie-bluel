@@ -18,18 +18,22 @@ async function showWorks(){
     const galleryWorks = await getWorks();
     //console.log(galleryWorks);
     galleryWorks.forEach((work) => {
-        const figure = document.createElement("figure");
-        const image = document.createElement("img");
-        figure.dataset.category = work.category.id;
-        image.src = work.imageUrl;
-        const figcaption = document.createElement("figcaption");
-        figcaption.textContent= work.title;
-        figure.appendChild(image);
-        figure.appendChild(figcaption);
-        gallery.appendChild(figure);
+        createWork(work);
     });
 }
 showWorks();
+
+function createWork(work){
+    const figure = document.createElement("figure");
+    const image = document.createElement("img");
+    figure.dataset.category = work.category.id;
+    image.src = work.imageUrl;
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent= work.title;
+    figure.appendChild(image);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
+}
 
  //Recuperer les categories 
 
@@ -46,14 +50,14 @@ async function showCategories(){
     categories.forEach((categorie) => {
         const btn = document.createElement("button");
         btn.textContent = categorie.name;
-       btn.id = "button-"+categorie.id;
+       btn.id = categorie.id;
        btn.className = "filterbutton";
-       btn.onclick = function(){setColor("button-"+categorie.id);}
        filters.appendChild(btn);
 });
 }
 
 showCategories();
+
 
 function setColor(btn){
     let property = document.getElementById(btn);
@@ -61,15 +65,42 @@ function setColor(btn){
         property.style.backgroundColor = "#FFFFFF"
         property.style.color = "#1D6154";      
     } else {
-        property.style.backgroundColor = "#1D6154"
+        property.style.backgroundColor = "#1D6154";
         property.style.color = "white";
     }
 
 }
 
-/*const button = document.querySelector("button");
-button.addEventListener("click", ()=> {
-    button.style.backgroundColor = "#1D6154";
-    button.style.color = "white";
-});*/
+
+async function filterCategory() {
+    const filters = await getWorks();
+    console.log(filters);
+    const buttons = document.querySelectorAll(".filters button")
+    console.log(buttons)
+    buttons.forEach((button) => {
+        // Supression de la classe de style sur le bouton
+        button.addEventListener("click", (e) => {
+          btnId = e.target.id;
+          // ajout de la classe de style "appuyée" sur le bouton
+          gallery.innerHTML = "";
+          console.log(btnId)
+          if (btnId !== "0") {
+            const filtersTriCategory = filters.filter((work) => {
+              return work.category.id == btnId;
+            });
+            filtersTriCategory.forEach((work) => {
+                createWork(work);
+            });
+          } else {
+            showWorks();
+          }
+          console.log(btnId);
+        });
+      });
+}
+filterCategory()
+
+function focusOnLoad() {
+    document.getElementById("0").focus();
+}
 
