@@ -150,7 +150,9 @@ background-color: white;
 .filterbutton:focus{
 	background-color: #1D6154;
 	color: white;
+	outline: none;
 }
+
 
 .gallery {
 	width: 100%;

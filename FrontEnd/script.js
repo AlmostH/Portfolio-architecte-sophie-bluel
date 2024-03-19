@@ -100,7 +100,3 @@ async function filterCategory() {
 }
 filterCategory()
 
-function focusOnLoad() {
-    document.getElementById("0").focus();
-}
-
