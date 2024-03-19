@@ -46,13 +46,30 @@ async function showCategories(){
     categories.forEach((categorie) => {
         const btn = document.createElement("button");
         btn.textContent = categorie.name;
-       btn.id = categorie.id;
+       btn.id = "button-"+categorie.id;
        btn.className = "filterbutton";
-
-    
+       btn.onclick = function(){setColor("button-"+categorie.id);}
        filters.appendChild(btn);
 });
 }
 
 showCategories();
+
+function setColor(btn){
+    let property = document.getElementById(btn);
+    if (property.style.color === "white"){
+        property.style.backgroundColor = "#FFFFFF"
+        property.style.color = "#1D6154";      
+    } else {
+        property.style.backgroundColor = "#1D6154"
+        property.style.color = "white";
+    }
+
+}
+
+/*const button = document.querySelector("button");
+button.addEventListener("click", ()=> {
+    button.style.backgroundColor = "#1D6154";
+    button.style.color = "white";
+});*/
 
