@@ -37,7 +37,7 @@ function login() {
             localStorage.setItem("token", userData.token);
             window.location.href = "index.html"; 
         } else {
-           errorMessage.textContent = "Identifiants invalides.";
+           errorMessage.textContent = "Erreur dans l’identifiant ou le mot de passe";
         }
     });
 }
