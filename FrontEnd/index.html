@@ -11,14 +11,15 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="script.js" defer> </script>
 </head>
-<body>
+<body onload="onload()">
+<div id="editionbanner">Mode édition</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="./login.html">login</a></li>
+			<li id="logintext"><a href="./login.html" >login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -37,6 +38,7 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
+		<div id="modifyProject"><a href="" onclick=modifyModal()>modifier</a></div>
 		<div class="filters">
 			<button class="filterbutton" id="0" autofocus>Tous</button>
 		</div>

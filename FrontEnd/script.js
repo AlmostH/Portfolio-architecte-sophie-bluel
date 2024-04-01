@@ -100,3 +100,24 @@ async function filterCategory() {
 }
 filterCategory()
 
+function onload() {
+  const logintext = document.getElementById("logintext");
+  const editionbanner = document.getElementById("editionbanner");
+  const modifyProject = document.getElementById("modifyProject");
+  let token = localStorage.getItem("token")
+  if(token) {
+    logintext.innerHTML = "<a href='' onclick=logout() >logout</a>";
+    editionbanner.style.display = "block";  
+    modifyProject.style.display = "block";
+  }
+}
+
+function logout() {
+  localStorage.removeItem("token");
+}
+
+
+function modifyModal() {
+  alert("test");  
+
+}
