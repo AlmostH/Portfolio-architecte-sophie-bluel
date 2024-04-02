@@ -100,6 +100,8 @@ async function filterCategory() {
 }
 filterCategory()
 
+/* Affichage quand connecté */
+
 function onload() {
   const logintext = document.getElementById("logintext");
   const editionbanner = document.getElementById("editionbanner");
@@ -109,6 +111,7 @@ function onload() {
     logintext.innerHTML = "<a href='' onclick=logout() >logout</a>";
     editionbanner.style.display = "flex";  
     modifyProject.style.display = "flex";
+    filters.style.display = "none";
   }
 }
 
@@ -118,7 +121,7 @@ function logout() {
 
 
 
-
+/* modale */
 
 let modal = null
 
