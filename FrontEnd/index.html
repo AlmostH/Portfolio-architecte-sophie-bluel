@@ -12,7 +12,7 @@
 	<script src="script.js" defer> </script>
 </head>
 <body onload="onload()">
-<div id="editionbanner">Mode édition</div>
+<div id="editionbanner"><img src="./assets/icons/Vector.png" alt="icône modifier">Mode édition</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -37,8 +37,8 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div id="modifyProject"><a href="" onclick=modifyModal()>modifier</a></div>
+		<div id="portfolioTitle"><h2>Mes Projets</h2>
+		<div id="modifyProject"><a href="#" onclick=openModal()><img src="./assets/icons/Edit.png" alt="icône modifier">modifier</a></div></div>
 		<div class="filters">
 			<button class="filterbutton" id="0" autofocus>Tous</button>
 		</div>
@@ -60,7 +60,14 @@
 		
 	</section>
 </main>
-
+<aside id="modaledit" class="modal">
+	<div class="modal-wrapper">
+	<div class="js-modal-close"> <a href="#" onclick="closeModal()">X</a></div>
+	Gallerie des photos
+	<button class="js-modal-add">Ajouter une photo</button>
+	</div>
+	</aside>
+	
 <footer>
 	<nav>
 		<ul>

@@ -107,8 +107,8 @@ function onload() {
   let token = localStorage.getItem("token")
   if(token) {
     logintext.innerHTML = "<a href='' onclick=logout() >logout</a>";
-    editionbanner.style.display = "block";  
-    modifyProject.style.display = "block";
+    editionbanner.style.display = "flex";  
+    modifyProject.style.display = "flex";
   }
 }
 
@@ -117,7 +117,18 @@ function logout() {
 }
 
 
-function modifyModal() {
-  alert("test");  
 
+
+
+let modal = null
+
+function openModal() {
+  const target = document.getElementById("modaledit");
+  target.style.display = "block"; 
+  modal = target;
+}
+
+function closeModal() {
+  modal.style.display = "none"; 
+  modal = null;
 }

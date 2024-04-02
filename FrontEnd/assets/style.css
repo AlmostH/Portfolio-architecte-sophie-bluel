@@ -104,6 +104,12 @@ nav li a{
 
 li:hover {
 	color: #B1663C;
+
+}
+
+nav li img{
+	height: 22px;
+	width:22px;
 }
 #introduction {
 	display: flex;
@@ -146,7 +152,7 @@ li:hover {
 
 .filterbutton{
 
-background-color: white;
+background-color: #FFFEF8;
 	font-family: 'Syne';
 	color: #1D6154 ;
 	border-radius: 60px;
@@ -249,10 +255,60 @@ footer{
 	width: 100%;
 	height: 59px;
 	text-align: center;
+	justify-content: center;
 	display: none;
+	align-items: center;
+	gap: 10px;
 
 }
 
+
 #modifyProject {
+	color: black;
 	display: none;
+	gap: 10px;
+	justify-content: center;
+	margin-bottom: 2em;
+
+}
+
+#modifyProject a {
+	text-decoration: none;
+	color: black;
+	gap: 10px;
+	display: flex;
+}	
+/****** Modale****************/
+
+
+#modaledit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    height: 25%;
+    background: white;
+    align-items: center;
+	display: none;
+	border-radius: 5px;
+}
+
+.modal-wrapper {
+   background: white;
+   padding: 20px;
+
+}
+#portfolioTitle{
+	display:flex;
+	justify-content: center;
+	gap:20px;
+	align-items: center;
+}
+
+.js-modal-add{
+	background-color: #1D6154;
+	color:white;
+	font-family: "Syne" ;
+	font-size: 14px;
+	border-radius: 60px;
 }
