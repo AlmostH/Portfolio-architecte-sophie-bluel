@@ -256,10 +256,12 @@ footer{
 	height: 59px;
 	text-align: center;
 	justify-content: center;
-	display: none;
 	align-items: center;
 	gap: 10px;
-
+	position: absolute;
+    top:0;
+	left:0;
+	display: none;
 }
 
 
@@ -278,24 +280,36 @@ footer{
 	gap: 10px;
 	display: flex;
 }	
+
+
+
+
+
+
 /****** Modale****************/
 
 
 #modaledit {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 25%;
-    height: 25%;
+    top: 30%;
+    left: 40%;
+	width: 630px;
+	height: 688px;
     background: white;
     align-items: center;
 	display: none;
-	border-radius: 5px;
+	border-radius: 10px;
+	display: none;
+	flex-direction: column-reverse;
+	font-size: 26px;
+
+	
 }
 
 .modal-wrapper {
    background: white;
    padding: 20px;
+   
 
 }
 #portfolioTitle{
@@ -311,4 +325,17 @@ footer{
 	font-family: "Syne" ;
 	font-size: 14px;
 	border-radius: 60px;
+	height: 36px;
+	width:237px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none; 
+
+	
+	
+}
+.js-modal-close{
+	display: flex;
+	flex-direction: column-reverse;
 }

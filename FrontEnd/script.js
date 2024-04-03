@@ -101,17 +101,20 @@ async function filterCategory() {
 filterCategory()
 
 /* Affichage quand connecté */
+const logintext = document.getElementById("logintext");
+const editionbanner = document.getElementById("editionbanner");
+const modifyProject = document.getElementById("modifyProject");
+const body = document.getElementsByTagName('html')[0];
 
 function onload() {
-  const logintext = document.getElementById("logintext");
-  const editionbanner = document.getElementById("editionbanner");
-  const modifyProject = document.getElementById("modifyProject");
   let token = localStorage.getItem("token")
   if(token) {
     logintext.innerHTML = "<a href='' onclick=logout() >logout</a>";
     editionbanner.style.display = "flex";  
     modifyProject.style.display = "flex";
     filters.style.display = "none";
+    body.style.marginTop = "59px";
+
   }
 }
 
@@ -123,15 +126,21 @@ function logout() {
 
 /* modale */
 
-let modal = null
+let modal = null;
 
 function openModal() {
   const target = document.getElementById("modaledit");
-  target.style.display = "block"; 
+  target.style.display = "flex"; 
   modal = target;
 }
 
 function closeModal() {
   modal.style.display = "none"; 
   modal = null;
+}
+
+window.onclick = function(event) {
+  if (!event.target.closest("#modaledit") && !event.target.closest("#modifyProject")) {
+    closeModal();
+  }        
 }
