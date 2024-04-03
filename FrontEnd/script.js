@@ -132,6 +132,7 @@ function openModal() {
   const target = document.getElementById("modaledit");
   target.style.display = "flex"; 
   modal = target;
+  showWorksedit();
 }
 
 function closeModal() {
@@ -139,8 +140,27 @@ function closeModal() {
   modal = null;
 }
 
+
 window.onclick = function(event) {
-  if (!event.target.closest("#modaledit") && !event.target.closest("#modifyProject")) {
+  if(event.target == modal) { 
     closeModal();
   }        
+}
+
+async function showWorksedit(){
+  const galleryWorks = await getWorks();
+  //console.log(galleryWorks);
+  galleryWorks.forEach((work) => {
+      createWorkedit(work);
+  });
+}
+
+function createWorkedit(work){
+  let galleryedit = document.getElementById("galleryedit");
+  const figure = document.createElement("figure");
+  const image = document.createElement("img");
+  figure.dataset.category = work.category.id;
+  image.src = work.imageUrl;
+  figure.appendChild(image);
+  galleryedit.appendChild(figure);
 }
