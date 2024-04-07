@@ -163,12 +163,13 @@ function createWorkedit(work){
   const trash = document.createElement("img");
   const divimag = document.createElement("div");
   const urltrash = document.createElement("a");
-  figure.dataset.category = work.category.id;
+  figure.dataset.id = work.id;
   image.src = work.imageUrl;
   image.className = "editimg";
   trash.className = "trashimg";
   divimag.className = "trashwrapper";
   urltrash.href = "#";
+  urltrash.setAttribute("onclick","deleteWork("+work.id+")");
   trash.src = "./assets/icons/trash-can-solid.png";
   figure.appendChild(image);
   figure.appendChild(divimag);
@@ -176,3 +177,22 @@ function createWorkedit(work){
   urltrash.appendChild(trash);
   galleryedit.appendChild(figure);
 }
+
+ async function deleteWork(id) {
+    await fetch("http://localhost:5678/api/works/"+id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      }
+    }).then(response => {
+      if (response.ok) {
+        const figure = document.querySelector('[data-id="'+id+'"]')
+        figure.remove();
+      } else {
+        console.error("La suppression a échoué.");
+      }
+      }
+    )
+}
+
+
