@@ -127,6 +127,7 @@ function logout() {
 /* modale */
 
 let modal = null;
+let galleryedit = document.getElementById("galleryedit");
 
 function openModal() {
   const target = document.getElementById("modaledit");
@@ -149,6 +150,7 @@ window.onclick = function(event) {
 
 async function showWorksedit(){
   const galleryWorks = await getWorks();
+  galleryedit.innerHTML="";
   //console.log(galleryWorks);
   galleryWorks.forEach((work) => {
       createWorkedit(work);
@@ -156,11 +158,21 @@ async function showWorksedit(){
 }
 
 function createWorkedit(work){
-  let galleryedit = document.getElementById("galleryedit");
   const figure = document.createElement("figure");
   const image = document.createElement("img");
+  const trash = document.createElement("img");
+  const divimag = document.createElement("div");
+  const urltrash = document.createElement("a");
   figure.dataset.category = work.category.id;
   image.src = work.imageUrl;
+  image.className = "editimg";
+  trash.className = "trashimg";
+  divimag.className = "trashwrapper";
+  urltrash.href = "#";
+  trash.src = "./assets/icons/trash-can-solid.png";
   figure.appendChild(image);
+  figure.appendChild(divimag);
+  divimag.appendChild(urltrash);
+  urltrash.appendChild(trash);
   galleryedit.appendChild(figure);
 }
