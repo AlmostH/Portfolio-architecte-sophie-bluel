@@ -78,28 +78,29 @@
 		<div class="js-modal-close"> <a href="#" onclick="closeModal2()"><img src="./assets/icons/xmark.png" alt="icône supprimer"> </a></div>
 		<div class="js-modal-previous"> <a href="#" onclick="previousModal()"><img src="./assets/icons/arrow-left.png" alt="icône supprimer"> </a></div>
 		
-		<p class="addPhotoTitle">Ajout Photo</p>
-		<div class="photoContainer">
-			<div class="addimg">
-			<img src="./assets/icons/picture.png" alt="icône d'ajout d'image">
-			</div>
-			<button class="addPhotoBtn"><a href="#"></a> + Ajouter photo</button>
-			<p class="addPhotoSubtitle">jpg, png : 4mo max</p>
-		</div>
+
 		<form id="addProjectForm" action="#" method="post">
+			<p class="addPhotoTitle">Ajout Photo</p>
+			<div class="photoContainer">
+				<div class="addimg">
+				<img id="inputfilepreview" src="./assets/icons/picture.png" alt="icône d'ajout d'image">
+				</div>
+				<button type="button" class="addPhotoBtn" id="addPhotoBtnid" onclick="importData()"><a href="#"></a> + Ajouter photo</button>
+				<p id ="addPhotoSubtitle">jpg, png : 4mo max</p>
+			</div>
 			<ul>
 			  <li>
 				<label for="Titre">Titre</label>
-				<input type="text" id="title" name="title" />
+				<input type="text" id="titleupload" name="titleupload" />
 			  </li>
 			  <li>
 				<label for="categorie">Catégorie</label>
-				<select id="cat" name="cat">
+				<select id="categoryId" name="categoryId">
 			  </select>
 			  </li>
 			</ul>
 			<div id="lign"></div>
-			<button class="validation"><a href="#"></a>Valider</button>
+			<button class="validation" id="validateAddbutton"><a href="#"></a>Valider</button>
 		  </form>
 
 	</div>

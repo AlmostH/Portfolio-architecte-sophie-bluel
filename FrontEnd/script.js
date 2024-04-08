@@ -209,7 +209,7 @@ addWorkButton.addEventListener('click', async function () {
   const modale2 = document.getElementById('modale2');
   modale2.style.display = "flex";
   modal.style.display ="none";
-  const categories = document.getElementById('cat');
+  const categories = document.getElementById('categoryId');
   const listecat = await getCategories();
   //console.log(categories);
   listecat.forEach((categorie) => {
@@ -242,8 +242,40 @@ function addProjectForm(e){
   e.preventDefault();
   const formData =new FormData(addProject);
   const title = formData.get("title");
-  const cat = formData.get("cat");
+  const cat = formData.get("categoryId");
   console.log("cat", cat);
 
 
+}
+
+
+function importData() {
+  let input = document.createElement('input');
+  input.type = 'file';
+  input.onchange = _ => {
+    // you can use this method to get file and perform respective operations
+            let files =   Array.from(input.files);
+            console.log(files);
+            //const intputfilepreview = document.querySelector("#inputfilepreview");
+            //intputfilepreview.file = files;
+            previewPhoto(files);
+        };
+  input.click();
+
+}
+
+
+function previewPhoto(input) {
+  if (input[0]) {
+    document.getElementById("addPhotoBtnid").style.display = "none";
+    document.getElementById("addPhotoSubtitle").style.display = "none";
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      const img=document.querySelector("#inputfilepreview");
+      img.className = "uploadpreview";
+      img.src =  e.target.result;
+      document.getElementById("titleupload").value=input[0].name;
+    };
+    reader.readAsDataURL(input[0]);
+  }
 }

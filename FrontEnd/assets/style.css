@@ -432,6 +432,8 @@ footer{
  .addPhotoTitle{
 	font-size: 26px;
 	font-family: "Work Sans";
+	justify-content: center;
+	display: flex;
 
  }
 
@@ -448,14 +450,14 @@ footer{
 	transform: translateY(1px);
 
 }
-.addPhotoSubtitle{
+#addPhotoSubtitle{
 	font-size: 10px;
 	color: #444444;
 	margin-top: 7px;
 
 }
 
-#title, #cat {
+#titleupload, #categoryId {
 	width: 420px;
 	height: 51px;
 	display: flex;
@@ -475,7 +477,7 @@ footer{
 } 
 
 
-.validation{
+#validateAddbutton{
 	width: 237px;
 	height: 36px;
 	border-radius: 60px;
@@ -485,10 +487,11 @@ footer{
 	font-size: 14px;
 	border: none;
 	margin-bottom: 45px;
-	
+	left: 100px;
+	position: relative;
 
 }
-.validation:active {
+#validateAddbutton:active {
 	transform: translateY(1px);
 }
 
@@ -496,4 +499,8 @@ footer{
 position: relative;
 top:-20px;
 left:-280px;
+}
+
+.uploadpreview{
+	height:166px;
 }
