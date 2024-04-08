@@ -204,11 +204,20 @@ async function deleteWork(id) {
 }*/
 
 const addWorkButton = document.querySelector('.js-modal-add');
-addWorkButton.addEventListener('click', function () {
+addWorkButton.addEventListener('click', async function () {
 
   const modale2 = document.getElementById('modale2');
-  modale2.style.display = 'flex';
+  modale2.style.display = "flex";
   modal.style.display ="none";
+  const categories = document.getElementById('cat');
+  const listecat = await getCategories();
+  //console.log(categories);
+  listecat.forEach((categorie) => {
+     const cat = document.createElement("option");
+     cat.text = categorie.name;
+     cat.value = categorie.id;
+     categories.appendChild(cat);
+  })
 })
 
 function closeModal2() {
@@ -221,5 +230,20 @@ function previousModal(){
   const modale2 = document.getElementById('modale2');
   modale2.style.display = "none"; 
   modal.style.display = "flex";
+
+}
+
+/* Ajouter un projet via le formulaire*/
+
+const addProject = document.querySelector("#addProjectForm");
+addProject.addEventListener("submit", addProjectForm);
+
+function addProjectForm(e){
+  e.preventDefault();
+  const formData =new FormData(addProject);
+  const title = formData.get("title");
+  const cat = formData.get("cat");
+  console.log("cat", cat);
+
 
 }

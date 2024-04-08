@@ -86,20 +86,22 @@
 			<button class="addPhotoBtn"><a href="#"></a> + Ajouter photo</button>
 			<p class="addPhotoSubtitle">jpg, png : 4mo max</p>
 		</div>
-		<form action="#" method="post">
+		<form id="addProjectForm" action="#" method="post">
 			<ul>
 			  <li>
 				<label for="Titre">Titre</label>
-				<input type="text" id="title" name="photo_name" />
+				<input type="text" id="title" name="title" />
 			  </li>
 			  <li>
 				<label for="categorie">Catégorie</label>
-				<input type="select" id="cat" name="cat-name" />
+				<select id="cat" name="cat">
+			  </select>
 			  </li>
 			</ul>
+			<div id="lign"></div>
+			<button class="validation"><a href="#"></a>Valider</button>
 		  </form>
-		  <div id="lign"></div>
-		<button class="validation"><a href="#"></a>Valider</button>
+
 	</div>
 
 </aside>
