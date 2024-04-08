@@ -307,8 +307,7 @@ footer{
    background: white;
    padding: 20px;
    position: fixed;
-   top: 30%;
-   left: 40%;
+   top: 20%;
    width: 630px;
    height: 688px;
    background: white;
@@ -337,6 +336,8 @@ footer{
 	justify-content: center;
 	align-items: center;
 	border: none; 
+
+
 	
 }
 .js-modal-add:active {
@@ -354,11 +355,12 @@ footer{
 }
 
 #galleryedit {
-	width: 85%;
+	width: 70%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-column-gap: 5px;
+	grid-column-gap: 6px;
 	grid-row-gap: 20px;
+	margin-bottom: 67px;
 }
 
 .editimg  {
@@ -370,17 +372,124 @@ footer{
 	top: 2px;
 	left: 4px;
 	position: relative;
+
 }
 .trashwrapper{
 	background-color: black;
 	position: relative;
-	top: -135px;
-	left: 80px;
+	top: -107px;
+	left: 60px;
 	width: 17px;
     height: 17px;
+	border-radius: 2px;
 }
 
 .editGalleryTitle{
 	font-size: 26px;
 	margin-bottom: 46px;
+}
+
+#modale2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+	width: 100%;
+	height: 100%;
+    background: rgba(0, 0, 0, 0.30);
+    align-items: center;
+	display: none;
+	flex-direction: column;
+	
+}
+.modal-wrapper2 {
+	background: white;
+	padding: 20px;
+	position: fixed;
+	top: 20%;
+	width: 630px;
+	height: 670px;
+	background: white;
+	align-items: center;
+	border-radius: 10px;
+	flex-direction: column;
+	display: flex;
+	
+ 
+ }
+
+ .photoContainer{
+	width: 420px;
+    height: 169px;
+	background-color: #E8F1F6;
+	margin-top:36px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+ }
+
+ .addPhotoTitle{
+	font-size: 26px;
+	font-family: "Work Sans";
+
+ }
+
+ .addPhotoBtn{
+    width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	background: #CBD6DC;	
+	color:#306685;
+	font-size: 14px;
+	border: none; 
+ }
+.addPhotoSubtitle{
+	font-size: 10px;
+	color: #444444;
+	margin-top: 7px;
+
+}
+
+#title, #cat {
+	width: 420px;
+	height: 51px;
+	display: flex;
+	margin-top: 10px;
+	margin-bottom: 47px;
+	background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	border: none;
+
+
+}
+#lign{
+
+	border-top: 1px solid #B3B3B3;
+    width : 420px;
+	margin-bottom: 38px;
+} 
+
+
+.validation{
+	width: 237px;
+	height: 36px;
+	border-radius: 60px;
+	background: #A7A7A7;
+	color: #FFF;
+	font-family: Syne;
+	font-size: 14px;
+	border: none;
+	margin-bottom: 45px;
+	
+
+}
+.validation:active {
+	transform: translateY(1px);
+}
+
+.js-modal-previous{
+position: relative;
+top:-20px;
+left:-280px;
 }

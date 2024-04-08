@@ -178,8 +178,8 @@ function createWorkedit(work){
   galleryedit.appendChild(figure);
 }
 
- async function deleteWork(id) {
-    await fetch("http://localhost:5678/api/works/"+id, {
+async function deleteWork(id) {
+      await fetch("http://localhost:5678/api/works/"+id, {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer '+localStorage.getItem('token')
@@ -195,4 +195,31 @@ function createWorkedit(work){
     )
 }
 
+/* Modale 2*/
 
+/*function openModal2() {
+  const target = document.getElementById("modale2");
+  target.style.display = "flex"; 
+  modal = target;
+}*/
+
+const addWorkButton = document.querySelector('.js-modal-add');
+addWorkButton.addEventListener('click', function () {
+
+  const modale2 = document.getElementById('modale2');
+  modale2.style.display = 'flex';
+  modal.style.display ="none";
+})
+
+function closeModal2() {
+  const modale2 = document.getElementById('modale2');
+  modale2.style.display = "none"; 
+  modal.style.display = "none";
+}
+
+function previousModal(){
+  const modale2 = document.getElementById('modale2');
+  modale2.style.display = "none"; 
+  modal.style.display = "flex";
+
+}

@@ -66,8 +66,42 @@
 		<div class="js-modal-close"> <a href="#" onclick="closeModal()"><img src="./assets/icons/xmark.png" alt="icône supprimer"> </a></div>
 		<p class="editGalleryTitle">Galerie photo</p>
 		<div id="galleryedit"></div>
-		<button class="js-modal-add">Ajouter une photo</button>
+		<div id="lign"></div>
+		<button class="js-modal-add"><a href="#"></a> Ajouter une photo</button>
 	</div>
+
+	</div>
+</aside>
+
+<aside id="modale2" class="modal">
+	<div class="modal-wrapper2">
+		<div class="js-modal-close"> <a href="#" onclick="closeModal2()"><img src="./assets/icons/xmark.png" alt="icône supprimer"> </a></div>
+		<div class="js-modal-previous"> <a href="#" onclick="previousModal()"><img src="./assets/icons/arrow-left.png" alt="icône supprimer"> </a></div>
+		
+		<p class="addPhotoTitle">Ajout Photo</p>
+		<div class="photoContainer">
+			<div class="addimg">
+			<img src="./assets/icons/picture.png" alt="icône d'ajout d'image">
+			</div>
+			<button class="addPhotoBtn"><a href="#"></a> + Ajouter photo</button>
+			<p class="addPhotoSubtitle">jpg, png : 4mo max</p>
+		</div>
+		<form action="#" method="post">
+			<ul>
+			  <li>
+				<label for="Titre">Titre</label>
+				<input type="text" id="title" name="photo_name" />
+			  </li>
+			  <li>
+				<label for="categorie">Catégorie</label>
+				<input type="select" id="cat" name="cat-name" />
+			  </li>
+			</ul>
+		  </form>
+		  <div id="lign"></div>
+		<button class="validation"><a href="#"></a>Valider</button>
+	</div>
+
 </aside>
 	
 <footer>
