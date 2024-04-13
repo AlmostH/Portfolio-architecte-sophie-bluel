@@ -55,7 +55,7 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input id="send" type="submit" value="Envoyer">
 		</form> 
 		
 	</section>
@@ -84,6 +84,7 @@
 			<div class="photoContainer">
 				<div class="addimg">
 				<img id="inputfilepreview" src="./assets/icons/picture.png" alt="icône d'ajout d'image">
+				<input id="inputuploadfile" type="file" style="display: none;">
 				</div>
 				<button type="button" class="addPhotoBtn" id="addPhotoBtnid" onclick="importData()"><a href="#"></a> + Ajouter photo</button>
 				<p id ="addPhotoSubtitle">jpg, png : 4mo max</p>
@@ -100,8 +101,9 @@
 			  </li>
 			</ul>
 			<div id="lign"></div>
-			<button class="validation" id="validateAddbutton"><a href="#"></a>Valider</button>
+			<button class="validation" id="validateAddbutton" type="button"><a href="#"></a>Valider</button>
 		  </form>
+		  
 
 	</div>
 

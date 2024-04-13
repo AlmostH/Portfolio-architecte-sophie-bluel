@@ -1,6 +1,6 @@
 
 
-/* Recuperer les travaux sur l'API*/
+/******* Recuperer les travaux sur l'API*******/
 
 async function getWorks() {
     let response = await fetch("http://localhost:5678/api/works");
@@ -10,7 +10,7 @@ async function getWorks() {
 console.log(await getWorks());
 })()*/
 
-/* Afficher les travaux*/
+/********** Afficher les travaux******/
 
 const gallery = document.getElementsByClassName("gallery")[0];
 
@@ -26,7 +26,8 @@ showWorks();
 function createWork(work){
     const figure = document.createElement("figure");
     const image = document.createElement("img");
-    figure.dataset.category = work.category.id;
+    figure.dataset.category = work.categoryId;
+    figure.dataset.id = work.id;
     image.src = work.imageUrl;
     const figcaption = document.createElement("figcaption");
     figcaption.textContent= work.title;
@@ -35,13 +36,14 @@ function createWork(work){
     gallery.appendChild(figure);
 }
 
- //Recuperer les categories 
+ /****Recuperer les categories ******/
 
 async function getCategories(){
     let response = await fetch("http://localhost:5678/api/categories");
     return await response.json();
 }
-/* Afficher les categories*/
+/******************* Afficher les categorie*********/
+
 const filters = document.getElementsByClassName("filters")[0];
 
 async function showCategories(){
@@ -59,18 +61,8 @@ async function showCategories(){
 showCategories();
 
 
-function setColor(btn){
-    let property = document.getElementById(btn);
-    if (property.style.color === "white"){
-        property.style.backgroundColor = "#FFFFFF"
-        property.style.color = "#1D6154";      
-    } else {
-        property.style.backgroundColor = "#1D6154";
-        property.style.color = "white";
-    }
 
-}
-
+     /*********Filtres***********/
 
 async function filterCategory() {
     const filters = await getWorks();
@@ -100,7 +92,8 @@ async function filterCategory() {
 }
 filterCategory()
 
-/* Affichage quand connecté */
+/***************** Affichage quand connecté *****************************/
+
 const logintext = document.getElementById("logintext");
 const editionbanner = document.getElementById("editionbanner");
 const modifyProject = document.getElementById("modifyProject");
@@ -124,7 +117,7 @@ function logout() {
 
 
 
-/* modale */
+/******************* Modale *******************************/
 
 let modal = null;
 let galleryedit = document.getElementById("galleryedit");
@@ -178,6 +171,7 @@ function createWorkedit(work){
   galleryedit.appendChild(figure);
 }
 
+/*********************************** Suppression de projet ********************************************/
 async function deleteWork(id) {
       await fetch("http://localhost:5678/api/works/"+id, {
       method: 'DELETE',
@@ -186,8 +180,10 @@ async function deleteWork(id) {
       }
     }).then(response => {
       if (response.ok) {
-        const figure = document.querySelector('[data-id="'+id+'"]')
-        figure.remove();
+        const figures = document.querySelectorAll('[data-id="'+id+'"]')
+        figures.forEach((figure) => { 
+          figure.remove();
+        })
       } else {
         console.error("La suppression a échoué.");
       }
@@ -195,18 +191,18 @@ async function deleteWork(id) {
     )
 }
 
-/* Modale 2*/
+/********************************************* * Modale 2************************************/
 
 /*function openModal2() {
   const target = document.getElementById("modale2");
   target.style.display = "flex"; 
   modal = target;
 }*/
-
+const modale2 = document.getElementById('modale2');
 const addWorkButton = document.querySelector('.js-modal-add');
 addWorkButton.addEventListener('click', async function () {
 
-  const modale2 = document.getElementById('modale2');
+
   modale2.style.display = "flex";
   modal.style.display ="none";
   const categories = document.getElementById('categoryId');
@@ -221,39 +217,75 @@ addWorkButton.addEventListener('click', async function () {
 })
 
 function closeModal2() {
-  const modale2 = document.getElementById('modale2');
   modale2.style.display = "none"; 
   modal.style.display = "none";
 }
 
 function previousModal(){
-  const modale2 = document.getElementById('modale2');
   modale2.style.display = "none"; 
   modal.style.display = "flex";
-
+  resetform()
+  
 }
+/********* Le formulaire se vide si on revient sur la précédente modale *************************/
 
-/* Ajouter un projet via le formulaire*/
+function resetform(){
+  let formadd = document.getElementById("addProjectForm");
+  document.getElementById("addPhotoBtnid").style.display = "block";
+  document.getElementById("addPhotoSubtitle").style.display = "block";
+  document.querySelector("#inputfilepreview").src = "./assets/icons/picture.png";
+  document.querySelector("#inputfilepreview").className = ""
+  formadd.reset()
+}
+/******************************Ajouter un projet via le formulaire/***************************/
 
-const addProject = document.querySelector("#addProjectForm");
-addProject.addEventListener("submit", addProjectForm);
+const addProject = document.querySelector("#validateAddbutton");
+addProject.addEventListener("click", addProjectForm);
 
 function addProjectForm(e){
   e.preventDefault();
-  const formData =new FormData(addProject);
-  const title = formData.get("title");
-  const cat = formData.get("categoryId");
-  console.log("cat", cat);
-
+  const title = document.getElementById("titleupload");
+  const categoryId = document.getElementById("categoryId");
+  const fileInput = document.getElementById('inputuploadfile');
+  const formData = new FormData();
+  formData.append("title",title.value);
+  formData.append("category", categoryId.value);
+  formData.append('image', fileInput.files[0]);
+  fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      Authorization: 'Bearer '+localStorage.getItem('token')
+    },
+    accept: 'application/json',
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erreur de requête réseau');
+      }
+      return response.json();  
+    })
+    .then(data => {
+      alert('Projet ajouté avec succès !');
+      createWork(data);
+      createWorkedit(data);
+      previousModal();
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Erreur lors de l\'ajout du projet.');
+    });
 
 }
 
 
+
+
 function importData() {
-  let input = document.createElement('input');
-  input.type = 'file';
+  //let input = document.createElement('input');
+  //input.type = 'file';
+  const input = document.getElementById('inputuploadfile');
   input.onchange = _ => {
-    // you can use this method to get file and perform respective operations
             let files =   Array.from(input.files);
             console.log(files);
             //const intputfilepreview = document.querySelector("#inputfilepreview");
@@ -264,6 +296,7 @@ function importData() {
 
 }
 
+/************** Preview photo ****************/
 
 function previewPhoto(input) {
   if (input[0]) {
@@ -279,3 +312,6 @@ function previewPhoto(input) {
     reader.readAsDataURL(input[0]);
   }
 }
+
+
+ 
