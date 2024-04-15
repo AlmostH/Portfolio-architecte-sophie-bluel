@@ -47,7 +47,12 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+
+/* afiche le font-weight avec chrome*/
+* {-webkit-font-smoothing: antialiased;}
+
 body {
+
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
@@ -89,7 +94,9 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-	gap:12px;
+	gap:32px;
+	font-weight: 400;
+	font-size: 16px;
 
 }
 nav li {
@@ -104,7 +111,8 @@ nav li a{
 }
 
 li:hover {
-	color: #B1663C;
+	color: black;
+	font-weight: 700;
 
 }
 
@@ -212,6 +220,11 @@ align-items: center;
 	flex-direction: column;
 }
 
+#contact form:hover{
+background-color: #0E2F28;
+
+}
+
 #contact input:not(#send) {
 	height: 50px;
 	font-size: 1.2em;
@@ -246,11 +259,24 @@ input[type="submit"]{
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
+#send:hover{
+	background-color: #0E2F28;
+}
+footer{
+	height: 60px;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	background-color: #FFFFFF;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	margin-right:79px;
 }
 footer nav li{
 	font-size: 14px;
@@ -262,8 +288,13 @@ footer nav li{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 150px;
 	
 }
+#login-bold{
+	font-weight: 700;
+}
+
 #connexion{
 	text-align: left;
 	margin-top: 60px;
@@ -289,23 +320,38 @@ footer nav li{
 	margin-bottom: 28px;
 
 }
+.form-button:hover{
+background-color: #0E2F28;
+}
+
 .login a{
 	color: #3D3D3D;
+	margin-bottom:405px;
 
 }
 
 #footer-login{
-	width: 1440px;
 	height: 60px;
-	margin-top: 355px;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background-color: #FFFFFF;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
 
 }
 
+
+
 #footer-login ul{
 
-justify-content: flex-end;
-display: flex;
-margin-right:170px ;
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em;
+	margin-right:79px;
 
 }
 
@@ -367,7 +413,7 @@ margin-right:170px ;
    background: white;
    padding: 20px;
    position: fixed;
-   top: 20%;
+   top: 25%;
    width: 630px;
    height: 688px;
    background: white;
@@ -400,8 +446,8 @@ margin-right:170px ;
 
 	
 }
-.js-modal-add:active {
-	transform: translateY(1px);
+.js-modal-add:hover {
+	background-color: #0E2F28;
 }
 
 
