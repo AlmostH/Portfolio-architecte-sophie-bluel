@@ -81,7 +81,7 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
+
 }
 
 h2{
@@ -220,10 +220,6 @@ align-items: center;
 	flex-direction: column;
 }
 
-#contact form:hover{
-background-color: #0E2F28;
-
-}
 
 #contact input:not(#send) {
 	height: 50px;
