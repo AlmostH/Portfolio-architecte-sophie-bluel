@@ -219,12 +219,13 @@ addWorkButton.addEventListener('click', async function () {
 function closeModal2() {
   modale2.style.display = "none"; 
   modal.style.display = "none";
+  resetform();
 }
 
 function previousModal(){
   modale2.style.display = "none"; 
   modal.style.display = "flex";
-  resetform()
+  resetform();
   
 }
 /********* Le formulaire se vide si on revient sur la précédente modale *************************/
@@ -235,7 +236,9 @@ function resetform(){
   document.getElementById("addPhotoSubtitle").style.display = "block";
   document.querySelector("#inputfilepreview").src = "./assets/icons/picture.png";
   document.querySelector("#inputfilepreview").className = ""
-  formadd.reset()
+  document.querySelector("#inputuploadfile + span.error").textContent = "";
+  document.querySelector("#titleupload + span.error").textContent = "";
+  formadd.reset();
 }
 /******************************Ajouter un projet via le formulaire/***************************/
 
@@ -246,7 +249,11 @@ function addProjectForm(e){
   e.preventDefault();
   const title = document.getElementById("titleupload");
   const categoryId = document.getElementById("categoryId");
-  const fileInput = document.getElementById('inputuploadfile');
+  const fileInput = document.getElementById('inputuploadfile')
+  if ((!title.validity.valid) || (!fileInput.validity.valid)){
+    showError();
+    return false;
+  }
   const formData = new FormData();
   formData.append("title",title.value);
   formData.append("category", categoryId.value);
@@ -278,7 +285,21 @@ function addProjectForm(e){
 
 }
 
+function showError() {
+  const title = document.getElementById("titleupload");
+  const image = document.getElementById("inputuploadfile");
+  if (title.validity.valueMissing) {
+    const titleError = document.querySelector("#titleupload + span.error");
+    // If the field is empty,
+    // display the following error message.
+    titleError.textContent = "Entrez un titre";
+  }
+  if (image.validity.valueMissing){
+    const imageError = document.querySelector("#inputuploadfile + span.error");
+    imageError.textContent = "Inserez une image";
+  }
 
+}
 
 
 function importData() {
@@ -296,6 +317,8 @@ function importData() {
 
 }
 
+
+
 /************** Preview photo ****************/
 
 function previewPhoto(input) {
@@ -308,10 +331,14 @@ function previewPhoto(input) {
       img.className = "uploadpreview";
       img.src =  e.target.result;
       document.getElementById("titleupload").value=input[0].name;
+      document.querySelector("#inputuploadfile + span.error").textContent = "";
+     // document.querySelector("#titleupload + span.error").textContent = "";
     };
     reader.readAsDataURL(input[0]);
   }
 }
 
-
+document.querySelector("#titleupload").addEventListener("input",  function () {
+  document.querySelector("#titleupload + span.error").textContent = "";
+})
  

@@ -84,7 +84,8 @@
 			<div class="photoContainer">
 				<div class="addimg">
 				<img id="inputfilepreview" src="./assets/icons/picture.png" alt="icône d'ajout d'image">
-				<input id="inputuploadfile" type="file" style="display: none;">
+				<input id="inputuploadfile" type="file" style="display: none;" required>
+				<span class="error" id="errorinput"></span>
 				</div>
 				<button type="button" class="addPhotoBtn" id="addPhotoBtnid" onclick="importData()"><a href="#"></a> + Ajouter photo</button>
 				<p id ="addPhotoSubtitle">jpg, png : 4mo max</p>
@@ -92,7 +93,8 @@
 			<ul>
 			  <li>
 				<label for="Titre">Titre</label>
-				<input type="text" id="titleupload" name="titleupload" />
+				<input type="text" id="titleupload" name="titleupload"  required/>
+				<span class="error" id="errortitle"></span>
 			  </li>
 			  <li>
 				<label for="categorie">Catégorie</label>

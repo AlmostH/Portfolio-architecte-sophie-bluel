@@ -110,7 +110,7 @@ nav li a{
 
 }
 
-li:hover {
+header nav li:hover {
 	color: black;
 	font-weight: 700;
 
@@ -423,7 +423,7 @@ background-color: #0E2F28;
 	display:flex;
 	justify-content: center;
 	gap:20px;
-	align-items: center;
+	align-items:baseline;
 }
 
 .js-modal-add{
@@ -605,4 +605,18 @@ left:-280px;
 
 .uploadpreview{
 	height:166px;
+}
+
+.error{
+	color: red;
+}
+
+#errorinput {
+    position: absolute;
+	top: 180px;
+}
+
+#errortitle {
+	position: relative;
+	top: -40px;
 }
