@@ -6,9 +6,7 @@ async function getWorks() {
     let response = await fetch("http://localhost:5678/api/works");
     return await response.json();
   }
-/*(async () => {  
-console.log(await getWorks());
-})()*/
+
 
 /********** Afficher les travaux******/
 
@@ -42,7 +40,7 @@ async function getCategories(){
     let response = await fetch("http://localhost:5678/api/categories");
     return await response.json();
 }
-/******************* Afficher les categorie*********/
+/******************* Afficher les categories boutons filtres *********/
 
 const filters = document.getElementsByClassName("filters")[0];
 
@@ -62,7 +60,7 @@ showCategories();
 
 
 
-     /*********Filtres***********/
+     /*********Filtrer au clic boutons filtres ***********/
 
 async function filterCategory() {
     const filters = await getWorks();
@@ -97,7 +95,7 @@ filterCategory()
 const logintext = document.getElementById("logintext");
 const editionbanner = document.getElementById("editionbanner");
 const modifyProject = document.getElementById("modifyProject");
-const body = document.getElementsByTagName('html')[0];
+const body = document.getElementsByTagName("html")[0];
 
 function onload() {
   let token = localStorage.getItem("token")
@@ -121,7 +119,7 @@ function logout() {
 
 let modal = null;
 let galleryedit = document.getElementById("galleryedit");
-
+                                                                         
 function openModal() {
   const target = document.getElementById("modaledit");
   target.style.display = "flex"; 
@@ -134,7 +132,7 @@ function closeModal() {
   modal = null;
 }
 
-
+/* fermer la modale si on clique en dehors*/
 window.onclick = function(event) {
   if(event.target == modal) { 
     closeModal();
@@ -174,9 +172,9 @@ function createWorkedit(work){
 /*********************************** Suppression de projet ********************************************/
 async function deleteWork(id) {
       await fetch("http://localhost:5678/api/works/"+id, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        Authorization: 'Bearer '+localStorage.getItem('token')
+        Authorization: 'Bearer '+localStorage.getItem("token")
       }
     }).then(response => {
       if (response.ok) {
@@ -193,19 +191,14 @@ async function deleteWork(id) {
 
 /********************************************* * Modale 2************************************/
 
-/*function openModal2() {
-  const target = document.getElementById("modale2");
-  target.style.display = "flex"; 
-  modal = target;
-}*/
-const modale2 = document.getElementById('modale2');
-const addWorkButton = document.querySelector('.js-modal-add');
-addWorkButton.addEventListener('click', async function () {
 
+const modale2 = document.getElementById("modale2");
+const addWorkButton = document.querySelector(".js-modal-add");
 
+addWorkButton.addEventListener("click", async function () {
   modale2.style.display = "flex";
   modal.style.display ="none";
-  const categories = document.getElementById('categoryId');
+  const categories = document.getElementById("categoryId");
   const listecat = await getCategories();
   //console.log(categories);
   listecat.forEach((categorie) => {
@@ -215,20 +208,20 @@ addWorkButton.addEventListener('click', async function () {
      categories.appendChild(cat);
   })
 })
-
+/* fermeture de la modale d'ajout de projet au clic sur la croix */
 function closeModal2() {
   modale2.style.display = "none"; 
   modal.style.display = "none";
   resetform();
 }
-
+/* revenir à la modale précédente au clic sur la flèche*/
 function previousModal(){
   modale2.style.display = "none"; 
   modal.style.display = "flex";
   resetform();
   
 }
-/********* Le formulaire se vide si on revient sur la précédente modale *************************/
+/********* Le formulaire se vide si on ferme ou on revient sur la précédente modale *************************/
 
 function resetform(){
   let formadd = document.getElementById("addProjectForm");
@@ -240,6 +233,7 @@ function resetform(){
   document.querySelector("#titleupload + span.error").textContent = "";
   formadd.reset();
 }
+
 /******************************Ajouter un projet via le formulaire/***************************/
 
 const addProject = document.querySelector("#validateAddbutton");
@@ -249,7 +243,7 @@ function addProjectForm(e){
   e.preventDefault();
   const title = document.getElementById("titleupload");
   const categoryId = document.getElementById("categoryId");
-  const fileInput = document.getElementById('inputuploadfile')
+  const fileInput = document.getElementById("inputuploadfile")
   if ((!title.validity.valid) || (!fileInput.validity.valid)){
     showError();
     return false;
@@ -257,41 +251,40 @@ function addProjectForm(e){
   const formData = new FormData();
   formData.append("title",title.value);
   formData.append("category", categoryId.value);
-  formData.append('image', fileInput.files[0]);
-  fetch('http://localhost:5678/api/works', {
-    method: 'POST',
+  formData.append("image", fileInput.files[0]);
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
     body: formData,
     headers: {
       Authorization: 'Bearer '+localStorage.getItem('token')
     },
-    accept: 'application/json',
+    accept: "application/json",
   })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Erreur de requête réseau');
+        throw new Error("Erreur de requête réseau");
       }
       return response.json();  
     })
     .then(data => {
-      alert('Projet ajouté avec succès !');
+      alert("Projet ajouté avec succès !");
       createWork(data);
       createWorkedit(data);
       previousModal();
     })
     .catch(error => {
       console.error(error);
-      alert('Erreur lors de l\'ajout du projet.');
+      alert("Erreur lors de l'ajout du projet.");
     });
 
 }
+/* Messages d'erreur si formulaire incorrect*/
 
 function showError() {
   const title = document.getElementById("titleupload");
   const image = document.getElementById("inputuploadfile");
   if (title.validity.valueMissing) {
     const titleError = document.querySelector("#titleupload + span.error");
-    // If the field is empty,
-    // display the following error message.
     titleError.textContent = "Entrez un titre";
   }
   if (image.validity.valueMissing){
@@ -301,16 +294,17 @@ function showError() {
 
 }
 
+/* efface le message d'erreur si on rentre un titre*/
+document.querySelector("#titleupload").addEventListener("input",  function () {
+  document.querySelector("#titleupload + span.error").textContent = "";
+})
 
+/* importation du fichier*/
 function importData() {
-  //let input = document.createElement('input');
-  //input.type = 'file';
-  const input = document.getElementById('inputuploadfile');
+  const input = document.getElementById("inputuploadfile");
   input.onchange = _ => {
             let files =   Array.from(input.files);
             console.log(files);
-            //const intputfilepreview = document.querySelector("#inputfilepreview");
-            //intputfilepreview.file = files;
             previewPhoto(files);
         };
   input.click();
@@ -318,8 +312,7 @@ function importData() {
 }
 
 
-
-/************** Preview photo ****************/
+/************** affichage de la photo en prévisualisation ****************/
 
 function previewPhoto(input) {
   if (input[0]) {
@@ -332,13 +325,10 @@ function previewPhoto(input) {
       img.src =  e.target.result;
       document.getElementById("titleupload").value=input[0].name;
       document.querySelector("#inputuploadfile + span.error").textContent = "";
-     // document.querySelector("#titleupload + span.error").textContent = "";
     };
     reader.readAsDataURL(input[0]);
   }
 }
 
-document.querySelector("#titleupload").addEventListener("input",  function () {
-  document.querySelector("#titleupload + span.error").textContent = "";
-})
+
  

@@ -48,8 +48,8 @@ table {
 }
 /** end reset css**/
 
-/* afiche le font-weight avec chrome*/
-* {-webkit-font-smoothing: antialiased;}
+/* afiche le login en gras avec chrome*/
+/* * {-webkit-font-smoothing: antialiased;}*/
 
 body {
 
@@ -59,12 +59,21 @@ body {
 	font-size: 14px;
 	background-color: #FFFEF8;
 }
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+section {
+	margin: 50px 0
+}
+
+/********************* INDEX HEADER ***************************************/
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
-}
-section {
 	margin: 50px 0
 }
 
@@ -84,12 +93,6 @@ h1 > span {
 
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
-}
 nav ul {
 	display: flex;
 	align-items: center;
@@ -120,6 +123,9 @@ nav li img{
 	height: 22px;
 	width:22px;
 }
+
+/*********** INTRODUCTION ******************/
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -146,10 +152,37 @@ nav li img{
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+
+
+/***************** PORTFOLIO ***************************/
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 51px;
 }
+
+#portfolio{
+	margin-left: 96px;
+    margin-right: 89px;
+	margin-top: 139px;
+	margin-bottom: 57px;
+}
+
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+}
+
+/************ FILTRES ***********/
+
 .filters{
 	display: flex;
 	justify-content: center;
@@ -179,24 +212,7 @@ background-color: #FFFEF8;
 }
 
 
-#portfolio{
-	margin-left: 96px;
-    margin-right: 89px;
-	margin-top: 139px;
-	margin-bottom: 57px;
-}
-
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-.gallery img {
-	width: 100%;
-}
+/************** INDEX CONTACT ***************************/
 
 #contact {
 width: 50%;
@@ -215,7 +231,7 @@ align-items: center;
 }
 #contact form {
 	text-align: left;
-	margin: top 38px;
+	margin-top:38px;
 	display: flex;
 	flex-direction: column;
 }
@@ -278,7 +294,11 @@ footer nav li{
 	font-size: 14px;
 }
 
-/************ page de connexion **************/
+/************ PAGE LOGIN **************/
+
+#login-bold{
+	font-weight: 700;
+}
 
 .login {
 	display: flex;
@@ -287,9 +307,8 @@ footer nav li{
 	margin-top: 150px;
 	
 }
-#login-bold{
-	font-weight: 700;
-}
+
+/** FORMULAIRE LOGIN **/
 
 #connexion{
 	text-align: left;
@@ -322,9 +341,17 @@ background-color: #0E2F28;
 
 .login a{
 	color: #3D3D3D;
-	margin-bottom:405px;
+
 
 }
+#errorMessage{
+	color:red;
+	position: relative;
+	top:-100px;
+	left: 40px;
+}
+
+/****** FOOTER LOGIN ******/
 
 #footer-login{
 	height: 60px;
@@ -336,11 +363,7 @@ background-color: #0E2F28;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-
-
 }
-
-
 
 #footer-login ul{
 
@@ -348,9 +371,9 @@ background-color: #0E2F28;
 	justify-content: flex-end;
 	margin: 2em;
 	margin-right:79px;
-
 }
 
+/**********************PAGE INDEX MODE ADMIN ****************/
 
 #editionbanner {
 	background-color: black;
@@ -367,6 +390,12 @@ background-color: #0E2F28;
 	display: none;
 }
 
+#portfolioTitle{
+	display:flex;
+	justify-content: center;
+	gap:20px;
+	align-items:baseline;
+}
 
 #modifyProject {
 	color: black;
@@ -386,10 +415,7 @@ background-color: #0E2F28;
 
 
 
-
-
-
-/****** Modale****************/
+/**************** MODALE  GALERIE ****************/
 
 
 #modaledit {
@@ -419,13 +445,13 @@ background-color: #0E2F28;
    display: flex;
 
 }
-#portfolioTitle{
-	display:flex;
-	justify-content: center;
-	gap:20px;
-	align-items:baseline;
+.editGalleryTitle{
+	font-size: 26px;
+	margin-bottom: 46px;
 }
 
+
+/* bouton ajouter une photo*/
 .js-modal-add{
 	background-color: #1D6154;
 	color:white;
@@ -455,7 +481,7 @@ background-color: #0E2F28;
 
 
 }
-
+/* galerie photo miniature*/
 #galleryedit {
 	width: 70%;
 	display: grid;
@@ -464,18 +490,11 @@ background-color: #0E2F28;
 	grid-row-gap: 20px;
 	margin-bottom: 67px;
 }
-
+/*image*/
 .editimg  {
 	width: 100%;
 }
-.trashimg{
-	width: 9px;
-    height: 11px;
-	top: 2px;
-	left: 4px;
-	position: relative;
 
-}
 .trashwrapper{
 	background-color: black;
 	position: relative;
@@ -485,11 +504,17 @@ background-color: #0E2F28;
     height: 17px;
 	border-radius: 2px;
 }
+.trashimg{
+	width: 9px;
+    height: 11px;
+	top: 2px;
+	left: 4px;
+	position: relative;
 
-.editGalleryTitle{
-	font-size: 26px;
-	margin-bottom: 46px;
 }
+
+
+/********** MODALE AJOUT PHOTO *************/
 
 #modale2 {
     position: fixed;
@@ -558,7 +583,7 @@ background-color: #0E2F28;
 	margin-top: 7px;
 
 }
-
+/* case titre et categories*/
 #titleupload, #categoryId {
 	width: 420px;
 	height: 51px;
@@ -571,14 +596,14 @@ background-color: #0E2F28;
 
 
 }
-#lign{
+.line{
 
 	border-top: 1px solid #B3B3B3;
     width : 420px;
 	margin-bottom: 38px;
 } 
 
-
+/* bouton valider le formulaire*/
 #validateAddbutton{
 	width: 237px;
 	height: 36px;
@@ -596,17 +621,17 @@ background-color: #0E2F28;
 #validateAddbutton:active {
 	transform: translateY(1px);
 }
-
+/* revenir a la modale galerie*/
 .js-modal-previous{
 position: relative;
 top:-20px;
 left:-280px;
 }
-
+/* miniature de l'image a ajouter*/
 .uploadpreview{
 	height:166px;
 }
-
+/* message d'erreur si formaire incorrect*/
 .error{
 	color: red;
 }

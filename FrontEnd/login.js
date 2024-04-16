@@ -38,6 +38,7 @@ function login() {
             window.location.href = "index.html"; 
         } else {
            errorMessage.textContent = "Erreur dans l’identifiant ou le mot de passe";
+
         }
     });
 }
