@@ -21,7 +21,7 @@ async function fetchUserLogin(email, password) {
         return null;
     }
 }
-console.log(fetchUserLogin);
+
 
    
 function login() {
@@ -43,5 +43,5 @@ function login() {
     });
 }
 login();
-console.log(localStorage);
+
 

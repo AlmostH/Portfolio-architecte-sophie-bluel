@@ -3,8 +3,13 @@
 /******* Recuperer les travaux sur l'API*******/
 
 async function getWorks() {
+   try { 
     let response = await fetch("http://localhost:5678/api/works");
     return await response.json();
+   }  catch (error) {
+    console.error("Erreur lors de la récupération des travaux:", error);
+    return null;
+}
   }
 
 
@@ -14,10 +19,11 @@ const gallery = document.getElementsByClassName("gallery")[0];
 
 async function showWorks(){
     const galleryWorks = await getWorks();
-    //console.log(galleryWorks);
-    galleryWorks.forEach((work) => {
-        createWork(work);
-    });
+    if(galleryWorks) {
+      galleryWorks.forEach((work) => {
+          createWork(work);
+      });
+    }
 }
 showWorks();
 
@@ -37,8 +43,13 @@ function createWork(work){
  /****Recuperer les categories ******/
 
 async function getCategories(){
+  try {
     let response = await fetch("http://localhost:5678/api/categories");
     return await response.json();
+  } catch (error) {
+    console.error("Erreur lors de la récupération des catégories: ",error);
+    return null;
+  }
 }
 /******************* Afficher les categories boutons filtres *********/
 
@@ -46,14 +57,15 @@ const filters = document.getElementsByClassName("filters")[0];
 
 async function showCategories(){
     const categories = await getCategories();
-    //console.log(categories);
-    categories.forEach((categorie) => {
-        const btn = document.createElement("button");
-        btn.textContent = categorie.name;
-       btn.id = categorie.id;
-       btn.className = "filterbutton";
-       filters.appendChild(btn);
-});
+      if(categories) {
+        categories.forEach((categorie) => {
+          const btn = document.createElement("button");
+          btn.textContent = categorie.name;
+          btn.id = categorie.id;
+          btn.className = "filterbutton";
+          filters.appendChild(btn);
+    });
+  }
 }
 
 showCategories();
@@ -64,16 +76,13 @@ showCategories();
 
 async function filterCategory() {
     const filters = await getWorks();
-    console.log(filters);
     const buttons = document.querySelectorAll(".filters button")
-    console.log(buttons)
+
     buttons.forEach((button) => {
-        // Supression de la classe de style sur le bouton
         button.addEventListener("click", (e) => {
           btnId = e.target.id;
-          // ajout de la classe de style "appuyée" sur le bouton
           gallery.innerHTML = "";
-          console.log(btnId)
+   
           if (btnId !== "0") {
             const filtersTriCategory = filters.filter((work) => {
               return work.category.id == btnId;
@@ -84,7 +93,6 @@ async function filterCategory() {
           } else {
             showWorks();
           }
-          console.log(btnId);
         });
       });
 }
@@ -142,7 +150,6 @@ window.onclick = function(event) {
 async function showWorksedit(){
   const galleryWorks = await getWorks();
   galleryedit.innerHTML="";
-  //console.log(galleryWorks);
   galleryWorks.forEach((work) => {
       createWorkedit(work);
   });
@@ -200,7 +207,7 @@ addWorkButton.addEventListener("click", async function () {
   modal.style.display ="none";
   const categories = document.getElementById("categoryId");
   const listecat = await getCategories();
-  //console.log(categories);
+  categories.innerHTML="";
   listecat.forEach((categorie) => {
      const cat = document.createElement("option");
      cat.text = categorie.name;
